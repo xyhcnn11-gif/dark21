@@ -4027,8 +4027,9 @@
     }
 
     function flyName() {
-      var nm = nickGet();
       var box = document.getElementById('myIdBox');
+      var el = document.getElementById('myIdName');
+      var nm = nickGet() || (el && el.textContent) || '';
       if (!nm || !box) { if (box) box.style.opacity = '1'; return; }
       box.style.opacity = '0';
       var chip = document.createElement('div');
