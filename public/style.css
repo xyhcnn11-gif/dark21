@@ -1646,3 +1646,41 @@ body:not(.poker) .seat > .hero-box{position:relative}
 .diff-btn.active { border-color: #f2c14e; box-shadow: 0 0 0 1px rgba(242,193,78,.55) inset; background: rgba(242,193,78,.12); }
 .diff-btn.locked { opacity: .45; cursor: not-allowed; }
 
+
+
+/* ===== v237 开屏 + 左上角名字 ===== */
+#bootSplash{position:fixed;inset:0;z-index:99990;background:#08090b;display:flex;align-items:center;justify-content:center;
+  transition:opacity .55s ease;overflow:hidden}
+#bootSplash .bs-inner{text-align:center;position:relative}
+#bootSplash .bs-title{font-family:"方正姚体","华文行楷","Microsoft YaHei Light",serif;font-size:58px;letter-spacing:14px;color:#f2e9d6;font-weight:400;
+  opacity:0;transform:translateY(12px);transition:opacity .55s ease,transform .55s ease;
+  text-shadow:0 0 26px rgba(232,198,132,.28)}
+#bootSplash .bs-line{height:1px;width:0;margin:14px auto 0;background:linear-gradient(90deg,transparent,rgba(226,196,120,.85),transparent);
+  transition:width .7s ease}
+#bootSplash .bs-sub{font-size:19px;letter-spacing:8px;color:#baac94;margin-top:12px;opacity:0;transition:opacity .7s ease}
+#bootSplash.go .bs-title{opacity:1;transform:translateY(0)}
+#bootSplash.go .bs-sub{opacity:1}
+#bootSplash.go .bs-line{width:260px}
+#bootSplash.dim .bs-title,#bootSplash.dim .bs-sub{opacity:0}
+#bootSplash.dim .bs-line{width:0}
+#bootSplash.out{opacity:0;pointer-events:none}
+
+.boot-name{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:99995;
+  font-size:26px;letter-spacing:4px;color:#f4ead6;text-shadow:0 0 22px rgba(232,198,132,.45);
+  pointer-events:none;white-space:nowrap}
+
+/* 大厅左上角：我的名字 */
+#myIdBox{position:fixed;left:16px;top:12px;z-index:60;display:flex;align-items:center;gap:8px;
+  padding:7px 12px;border-radius:11px;background:rgba(18,22,20,.72);border:1px solid rgba(226,196,120,.22);
+  font-size:13px;color:#dfd7c6;cursor:pointer;user-select:none;backdrop-filter:blur(6px);
+  transition:opacity .35s ease,border-color .2s ease}
+#myIdBox:hover{border-color:rgba(226,196,120,.45)}
+#myIdBox .mid-lab{font-size:11px;color:#8f9a90;letter-spacing:1px}
+#myIdBox b{font-size:14px;letter-spacing:1px;color:#f0e6d2;font-weight:600}
+#myIdBox b.empty{color:#7d857f;font-weight:400}
+#myIdBox em{font-style:normal;font-size:10px;color:#6f7a72}
+#myIdBox input{width:112px;background:rgba(0,0,0,.35);border:1px solid rgba(226,196,120,.4);border-radius:7px;
+  color:#f0e6d2;font-size:13px;padding:3px 7px;outline:none}
+#myIdBox.pop{animation:midPop .5s ease}
+@keyframes midPop{0%{box-shadow:0 0 0 0 rgba(226,196,120,.5)}100%{box-shadow:0 0 0 14px rgba(226,196,120,0)}}
+#preload.fadeout{opacity:0;transition:opacity .45s ease}

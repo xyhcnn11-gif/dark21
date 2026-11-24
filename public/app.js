@@ -3886,4 +3886,201 @@
   /* 服务器洗入成功后，卡片里会带回 trickAdded，面板自动打勾 */
   window.addEventListener('__trick_sync', function () { if (panel && panel.classList.contains('on')) render(); });
   window.__trickPanel = { show: show, hide: hide, toggle: toggle };
+
+  /* ===== v236 ESC/F11 ===== */
+  (function escFullV236() {
+    if (window.__escFullV236) return;
+    window.__escFullV236 = true;
+    var box = null;
+    function room() {
+      try {
+        var s = window.__S;
+        var r = s ? (s.state || s.st) : null;
+        if (r && r.players) return true;
+        var g = document.getElementById('game');
+        if (g && !g.hidden) return true;
+        var il = document.getElementById('islRoot');
+        if (il && !il.hidden) return true;
+        return false;
+      } catch (e) { return false; }
+    }
+    function busy() {
+      var sel = ['#heroZoom', '#draftLayer', '#modal', '#roleUI', '#busyLock', '.witch-modal', '#fateLayer'];
+      for (var i = 0; i < sel.length; i++) {
+        var n = document.querySelector(sel[i]);
+        if (!n) continue;
+        if (n.hidden) continue;
+        var cs = getComputedStyle(n);
+        if (cs.display === 'none' || cs.visibility === 'hidden') continue;
+        if (Number(cs.opacity) < 0.15) continue;
+        if (!n.getClientRects().length) continue;
+        return true;
+      }
+      return false;
+    }
+    function close() { if (box) { box.remove(); box = null; } }
+    function open() {
+      if (box) return;
+      box = document.createElement('div');
+      box.setAttribute('data-v236', '1');
+      box.style.cssText = 'position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;background:rgba(6,8,10,.62)';
+      box.innerHTML = '<div style="min-width:320px;max-width:86vw;padding:24px 26px;border-radius:16px;' +
+        'background:rgba(24,27,32,.97);border:1px solid rgba(226,196,120,.28);box-shadow:0 24px 70px rgba(0,0,0,.62);' +
+        'text-align:center;color:#e9e3d6;font-family:inherit">' +
+        '<div style="font-size:18px;font-weight:700;letter-spacing:1px;margin-bottom:8px">返回大厅？</div>' +
+        '<div style="font-size:13px;opacity:.66;line-height:1.7;margin-bottom:20px">这一局会留在桌上，其他人还能接着打。</div>' +
+        '<div style="display:flex;gap:12px;justify-content:center">' +
+        '<button class="v236-no" style="min-width:104px;padding:9px 18px;border-radius:9px;border:1px solid rgba(255,255,255,.22);' +
+        'background:rgba(255,255,255,.08);color:#e9e3d6;font-size:14px;cursor:pointer">取消</button>' +
+        '<button class="v236-yes" style="min-width:104px;padding:9px 18px;border-radius:9px;border:1px solid rgba(226,196,120,.5);' +
+        'background:linear-gradient(180deg,rgba(226,196,120,.3),rgba(226,196,120,.16));color:#ffe9b8;font-size:14px;' +
+        'font-weight:600;cursor:pointer">返回大厅</button>' +
+        '</div></div>';
+      document.body.appendChild(box);
+      box.querySelector('.v236-yes').onclick = function () { location.href = 'index.html'; };
+      box.querySelector('.v236-no').onclick = close;
+      box.addEventListener('click', function (e) { if (e.target === box) close(); });
+    }
+    document.addEventListener('keydown', function (e) {
+      var k = e.key || '';
+      if (k === 'F11') {
+        e.preventDefault();
+        if (!document.fullscreenElement) {
+          var p = document.documentElement.requestFullscreen && document.documentElement.requestFullscreen();
+          if (p && p.catch) p.catch(function () {});
+        } else if (document.exitFullscreen) {
+          document.exitFullscreen().catch(function () {});
+        }
+        return;
+      }
+      if (k !== 'Escape') return;
+      if (box) { e.preventDefault(); close(); return; }
+      if (document.fullscreenElement) { if (document.exitFullscreen) document.exitFullscreen().catch(function () {}); return; }
+      if (busy()) return;
+      if (!room()) return;
+      var t = e.target;
+      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+      e.preventDefault();
+      open();
+    }, true);
+  })();
+
+
+  /* ===== v237 开屏动画 + 默认名字 ===== */
+  (function bootV237() {
+    var NICK_KEY = 'sgs_myName';
+    function nickGet() { try { return (localStorage.getItem(NICK_KEY) || '').trim(); } catch (e) { return ''; } }
+    function nickSet(v) { try { localStorage.setItem(NICK_KEY, v); } catch (e) {} }
+
+    function paintIdBox() {
+      var b = document.getElementById('myIdName');
+      if (!b) return;
+      var n = nickGet();
+      b.textContent = n || '未设置';
+      b.className = n ? '' : 'empty';
+    }
+
+    function bindIdBox() {
+      var box = document.getElementById('myIdBox');
+      if (!box || box.__bound) return;
+      box.__bound = true;
+      box.addEventListener('click', function () {
+        if (box.querySelector('input')) return;
+        var b = box.querySelector('b');
+        var old = nickGet();
+        var inp = document.createElement('input');
+        inp.value = old;
+        inp.maxLength = 12;
+        inp.placeholder = '输入名字';
+        b.style.display = 'none';
+        box.insertBefore(inp, box.querySelector('em'));
+        inp.focus(); inp.select();
+        function done(save) {
+          var v = (inp.value || '').trim().slice(0, 12);
+          if (save && v) {
+            nickSet(v);
+            var nf = document.getElementById('name');
+            if (nf) nf.value = v;
+          }
+          inp.remove(); b.style.display = ''; paintIdBox();
+        }
+        inp.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') { e.preventDefault(); done(true); }
+          else if (e.key === 'Escape') { e.preventDefault(); done(false); }
+          e.stopPropagation();
+        });
+        inp.addEventListener('blur', function () { done(true); });
+      });
+    }
+
+    function prefillName() {
+      var nf = document.getElementById('name');
+      if (!nf) return;
+      var n = nickGet();
+      if (n && !nf.value.trim()) nf.value = n;
+      if (nf.__nameBound) return;
+      nf.__nameBound = true;
+      nf.addEventListener('input', function () {
+        var v = (nf.value || '').trim().slice(0, 12);
+        if (v) { nickSet(v); paintIdBox(); }
+      });
+    }
+
+    function flyName() {
+      var nm = nickGet();
+      var box = document.getElementById('myIdBox');
+      if (!nm || !box) { if (box) box.style.opacity = '1'; return; }
+      box.style.opacity = '0';
+      var chip = document.createElement('div');
+      chip.className = 'boot-name';
+      chip.textContent = nm;
+      document.body.appendChild(chip);
+      var c = chip.getBoundingClientRect();
+      var t = box.getBoundingClientRect();
+      var dx = (t.left + t.width / 2) - (c.left + c.width / 2);
+      var dy = (t.top + t.height / 2) - (c.top + c.height / 2);
+      var an = chip.animate([
+        { transform: 'translate(0,0) scale(1)', opacity: 0.96, offset: 0 },
+        { transform: 'translate(' + dx * 0.55 + 'px,' + dy * 0.55 + 'px) scale(.82)', opacity: 0.9, offset: 0.62 },
+        { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.42)', opacity: 0, offset: 1 }
+      ], { duration: 780, easing: 'cubic-bezier(.28,.72,.24,1)', fill: 'forwards' });
+      an.onfinish = function () {
+        chip.remove();
+        box.style.opacity = '1';
+        box.classList.add('pop');
+        setTimeout(function () { box.classList.remove('pop'); }, 600);
+      };
+    }
+
+    function boot() {
+      bindIdBox();
+      prefillName();
+      paintIdBox();
+      var sp = document.getElementById('bootSplash');
+      if (!sp) { flyName(); return; }
+      var qs = new URLSearchParams(location.search);
+      if (qs.get('nosplash') === '1') { sp.remove(); flyName(); return; }
+
+      requestAnimationFrame(function () { sp.classList.add('go'); });
+      setTimeout(function () { sp.classList.add('dim'); }, 1150);          // 字变黑消失
+      setTimeout(function () { sp.classList.add('out'); flyName(); }, 1650);
+      setTimeout(function () { if (sp.parentNode) sp.remove(); }, 2350);
+
+      // 预载框：只淡出，不位移（避免"突然跳到左上角"那种闪现）
+      var pre = document.getElementById('preload');
+      if (pre) {
+        var mo = new MutationObserver(function () {
+          if (pre.hidden) {
+            pre.classList.add('fadeout');
+            mo.disconnect();
+          }
+        });
+        mo.observe(pre, { attributes: true, attributeFilter: ['hidden'] });
+      }
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+    else boot();
+  })();
+
 })();

@@ -4838,4 +4838,75 @@ function showModal(html) {
 
   initDrag();
   bootstrap();
+
+  /* ===== v236 ESC/F11 ===== */
+  (function escFullV236() {
+    if (window.__escFullV236) return;
+    window.__escFullV236 = true;
+    var box = null;
+    function room() {
+      try {
+        var r = (typeof S !== 'undefined' && S) ? (S.state || S.st) : null;
+        return !!(r && r.players);
+      } catch (e) { return false; }
+    }
+    function busy() {
+      var sel = ['#heroZoom', '#draftLayer', '#modal', '#roleUI', '#busyLock', '.witch-modal', '#fateLayer'];
+      for (var i = 0; i < sel.length; i++) {
+        var n = document.querySelector(sel[i]);
+        if (!n) continue;
+        if (n.hidden) continue;
+        if (n.offsetParent === null && getComputedStyle(n).position !== 'fixed') continue;
+        if (getComputedStyle(n).display === 'none') continue;
+        return true;
+      }
+      return false;
+    }
+    function close() { if (box) { box.remove(); box = null; } }
+    function open() {
+      if (box) return;
+      box = document.createElement('div');
+      box.setAttribute('data-v236', '1');
+      box.style.cssText = 'position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;background:rgba(6,8,10,.62)';
+      box.innerHTML = '<div style="min-width:320px;max-width:86vw;padding:24px 26px;border-radius:16px;' +
+        'background:rgba(24,27,32,.97);border:1px solid rgba(226,196,120,.28);box-shadow:0 24px 70px rgba(0,0,0,.62);' +
+        'text-align:center;color:#e9e3d6;font-family:inherit">' +
+        '<div style="font-size:18px;font-weight:700;letter-spacing:1px;margin-bottom:8px">返回大厅？</div>' +
+        '<div style="font-size:13px;opacity:.66;line-height:1.7;margin-bottom:20px">这一局会留在桌上，其他人还能接着打。</div>' +
+        '<div style="display:flex;gap:12px;justify-content:center">' +
+        '<button class="v236-no" style="min-width:104px;padding:9px 18px;border-radius:9px;border:1px solid rgba(255,255,255,.22);' +
+        'background:rgba(255,255,255,.08);color:#e9e3d6;font-size:14px;cursor:pointer">取消</button>' +
+        '<button class="v236-yes" style="min-width:104px;padding:9px 18px;border-radius:9px;border:1px solid rgba(226,196,120,.5);' +
+        'background:linear-gradient(180deg,rgba(226,196,120,.3),rgba(226,196,120,.16));color:#ffe9b8;font-size:14px;' +
+        'font-weight:600;cursor:pointer">返回大厅</button>' +
+        '</div></div>';
+      document.body.appendChild(box);
+      box.querySelector('.v236-yes').onclick = function () { location.href = 'index.html'; };
+      box.querySelector('.v236-no').onclick = close;
+      box.addEventListener('click', function (e) { if (e.target === box) close(); });
+    }
+    document.addEventListener('keydown', function (e) {
+      var k = e.key || '';
+      if (k === 'F11') {
+        e.preventDefault();
+        if (!document.fullscreenElement) {
+          var p = document.documentElement.requestFullscreen && document.documentElement.requestFullscreen();
+          if (p && p.catch) p.catch(function () {});
+        } else if (document.exitFullscreen) {
+          document.exitFullscreen().catch(function () {});
+        }
+        return;
+      }
+      if (k !== 'Escape') return;
+      if (box) { e.preventDefault(); close(); return; }
+      if (document.fullscreenElement) { if (document.exitFullscreen) document.exitFullscreen().catch(function () {}); return; }
+      if (busy()) return;
+      if (!room()) return;
+      var t = e.target;
+      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+      e.preventDefault();
+      open();
+    }, true);
+  })();
+
 })();

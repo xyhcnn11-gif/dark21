@@ -4,9 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>自由桌 · 三国杀 / 扑克</title>
-<link rel="stylesheet" href="style.css?v=188">
+<link rel="stylesheet" href="style.css?v=191">
 </head>
 <body data-theme="green">
+
+<div id="bootSplash">
+  <div class="bs-inner">
+    <div class="bs-title">自由桌</div>
+    <div class="bs-line"></div>
+    <div class="bs-sub">黑暗 21 天</div>
+  </div>
+</div>
+<div id="myIdBox" title="点一下改名字（之后进房间默认就用这个名字）">
+  <span class="mid-lab">我的名字</span><b id="myIdName" class="empty">未设置</b><em>点击修改</em>
+</div>
 
 <!-- ================= 大厅 ================= -->
 <div id="lobby">
@@ -208,6 +219,6 @@
 </div>
 
 <script src="/socket.io/socket.io.js"></script>
-<script src="app.js?v=188"></script>
+<script src="app.js?v=190"></script>
 </body>
 </html>
