@@ -43,11 +43,40 @@ app.use((req, res, next) => {
   next();
 });
 
+/* v238：gzip 压缩（没装 compression 包时自动跳过，不影响本地开发） */
+let compression = null;
+try { compression = require('compression'); } catch (e) { compression = null; }
+if (compression) {
+  app.use(compression({
+    threshold: 700,
+    filter(req, res) {
+      const p = String(req.path || '');
+      if (p === '/') return true;
+      return /\.(js|css|json|html|svg|txt|map|md)$/i.test(p);
+    },
+  }));
+}
+
+/* v238：带 ?v= 的静态资源一年强缓存（版本号变了 URL 就变，不会读到旧文件） */
+app.use((req, res, next) => {
+  const p = String(req.path || '');
+  const hasV = /[?&]v=\d+/.test(String(req.originalUrl || ''));
+  if (hasV && /\.(js|css)$/i.test(p)) {
+    res.locals.vAsset = true;
+    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+  } else if (/\.(png|jpg|jpeg|webp|gif|wav|mp3|ico|svg)$/i.test(p) && !/[\\/]heroes[\\/]/.test(p)) {
+    res.setHeader('Cache-Control', 'public, max-age=3600');
+  }
+  next();
+});
+
 /* 武将图：一年强缓存（浏览器存本地，第二次进房间不再下载）；其它资源每次都问一下（改了立刻生效） */
 app.use(express.static(path.join(__dirname, 'public'), {
   etag: false,
   setHeaders(res, filePath) {
-    if (/factions\.json$/.test(filePath)) {
+    if (res.locals && res.locals.vAsset) {
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    } else if (/factions\.json$/.test(filePath)) {
       res.setHeader('Cache-Control', 'no-cache');
     } else if (/[\\/]heroes[\\/]/.test(filePath)) {
       res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');

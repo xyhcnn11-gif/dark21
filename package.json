@@ -7,6 +7,7 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "compression": "^1.8.2",
     "express": "*",
     "socket.io": "*",
     "socket.io-client": "^4.8.4"
