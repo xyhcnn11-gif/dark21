@@ -1,0 +1,10 @@
+node_modules
+shots
+assets_src
+inbox
+state
+tools
+*.exe
+*.bat
+.git
+data

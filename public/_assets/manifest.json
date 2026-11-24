@@ -1,0 +1,354 @@
+[
+ {
+  "key": "carrot",
+  "label": "胡萝卜",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\icons\\carrot.png",
+  "box": [
+   9,
+   8,
+   141,
+   155
+  ]
+ },
+ {
+  "key": "fish",
+  "label": "鱼",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\icons\\fish.png",
+  "box": [
+   154,
+   44,
+   151,
+   119
+  ]
+ },
+ {
+  "key": "meat",
+  "label": "大肉排",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\icons\\meat.png",
+  "box": [
+   317,
+   35,
+   109,
+   128
+  ]
+ },
+ {
+  "key": "stone",
+  "label": "石头",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\icons\\stone.png",
+  "box": [
+   435,
+   31,
+   121,
+   132
+  ]
+ },
+ {
+  "key": "grass",
+  "label": "稻草",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\icons\\grass.png",
+  "box": [
+   565,
+   28,
+   121,
+   136
+  ]
+ },
+ {
+  "key": "wood",
+  "label": "木头",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\icons\\wood.png",
+  "box": [
+   693,
+   21,
+   142,
+   142
+  ]
+ },
+ {
+  "key": "shield",
+  "label": "圆盾",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\icons\\shield.png",
+  "box": [
+   855,
+   18,
+   105,
+   145
+  ]
+ },
+ {
+  "key": "torch",
+  "label": "火把",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\icons\\torch.png",
+  "box": [
+   981,
+   11,
+   132,
+   152
+  ]
+ },
+ {
+  "key": "mat",
+  "label": "草席",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\icons\\mat.png",
+  "box": [
+   1107,
+   42,
+   131,
+   121
+  ]
+ },
+ {
+  "key": "pot",
+  "label": "大锅",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\icons\\pot.png",
+  "box": [
+   1232,
+   15,
+   132,
+   148
+  ]
+ },
+ {
+  "key": "campfire",
+  "label": "篝火",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\icons\\campfire.png",
+  "box": [
+   1370,
+   10,
+   157,
+   154
+  ]
+ },
+ {
+  "key": "shelter",
+  "label": "草棚",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\icons\\shelter.png",
+  "box": [
+   21,
+   173,
+   197,
+   134
+  ]
+ },
+ {
+  "key": "boat",
+  "label": "木船",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\icons\\boat.png",
+  "box": [
+   232,
+   187,
+   174,
+   120
+  ]
+ },
+ {
+  "key": "scope",
+  "label": "望远镜",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\icons\\scope.png",
+  "box": [
+   416,
+   191,
+   116,
+   116
+  ]
+ },
+ {
+  "key": "umbrella",
+  "label": "雨伞",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\icons\\umbrella.png",
+  "box": [
+   550,
+   183,
+   128,
+   115
+  ]
+ },
+ {
+  "key": "chest",
+  "label": "宝箱",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\icons\\chest.png",
+  "box": [
+   686,
+   192,
+   128,
+   115
+  ]
+ },
+ {
+  "key": "furnace",
+  "label": "熔炉",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\icons\\furnace.png",
+  "box": [
+   843,
+   175,
+   123,
+   121
+  ]
+ },
+ {
+  "key": "iron",
+  "label": "废铁块",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\icons\\iron.png",
+  "box": [
+   991,
+   198,
+   128,
+   109
+  ]
+ },
+ {
+  "key": "spear",
+  "label": "长矛",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\icons\\spear.png",
+  "box": [
+   1113,
+   179,
+   128,
+   122
+  ]
+ },
+ {
+  "key": "scrap",
+  "label": "废铁",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\icons\\scrap.png",
+  "box": [
+   1257,
+   186,
+   202,
+   119
+  ]
+ },
+ {
+  "key": "npc_priest",
+  "label": "老牧师",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\npc\\npc_priest.png",
+  "box": [
+   11,
+   323,
+   130,
+   178
+  ]
+ },
+ {
+  "key": "npc_girl",
+  "label": "小女孩",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\npc\\npc_girl.png",
+  "box": [
+   135,
+   325,
+   131,
+   177
+  ]
+ },
+ {
+  "key": "npc_warrior",
+  "label": "战士",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\npc\\npc_warrior.png",
+  "box": [
+   260,
+   336,
+   130,
+   166
+  ]
+ },
+ {
+  "key": "npc_fisher",
+  "label": "年轻渔民",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\npc\\npc_fisher.png",
+  "box": [
+   404,
+   357,
+   130,
+   145
+  ]
+ },
+ {
+  "key": "npc_gambler",
+  "label": "赌神",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\npc\\npc_gambler.png",
+  "box": [
+   528,
+   359,
+   130,
+   143
+  ]
+ },
+ {
+  "key": "npc_brawler",
+  "label": "打斗者",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\npc\\npc_brawler.png",
+  "box": [
+   652,
+   336,
+   130,
+   166
+  ]
+ },
+ {
+  "key": "npc_merchant",
+  "label": "商人",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\npc\\npc_merchant.png",
+  "box": [
+   776,
+   359,
+   130,
+   142
+  ]
+ },
+ {
+  "key": "npc_scholar",
+  "label": "学者",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\npc\\npc_scholar.png",
+  "box": [
+   900,
+   337,
+   129,
+   166
+  ]
+ },
+ {
+  "key": "npc_tribesman",
+  "label": "族人",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\npc\\npc_tribesman.png",
+  "box": [
+   1023,
+   336,
+   130,
+   165
+  ]
+ },
+ {
+  "key": "npc_healer",
+  "label": "医女",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\npc\\npc_healer.png",
+  "box": [
+   1147,
+   360,
+   130,
+   142
+  ]
+ },
+ {
+  "key": "npc_guard",
+  "label": "守卫",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\npc\\npc_guard.png",
+  "box": [
+   1271,
+   357,
+   130,
+   144
+  ]
+ },
+ {
+  "key": "npc_captain",
+  "label": "船长",
+  "file": "D:\\sanguosha-v6\\public\\_assets\\npc\\npc_captain.png",
+  "box": [
+   1395,
+   336,
+   130,
+   165
+  ]
+ }
+]

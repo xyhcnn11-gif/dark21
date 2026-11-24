@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>自由桌 · 三国杀 / 扑克</title>
+<link rel="stylesheet" href="style.css?v=188">
+</head>
+<body data-theme="green">
+
+<!-- ================= 大厅 ================= -->
+<div id="lobby">
+  <div class="panel">
+    <div class="room-tabs">
+      <button class="room-tab active" data-intent="create">创建房间</button>
+      <button id="previewBtn" type="button" style="margin-top:10px;padding:7px 12px;border-radius:9px;border:1px dashed #5a6b5e;background:transparent;color:#9fb3a6;font-size:12px;cursor:pointer">👀 预览 4 人桌面（不用朋友）</button>
+    <button class="room-tab" data-intent="join">加入房间</button>
+    </div>
+    <h1>自由桌</h1>
+    <div class="sub" id="lobbySub">三国杀 · 扑克 · 联机开桌</div>
+
+    <label class="label" id="roomLabelText">房间号（留空自动生成）</label>
+    <input id="room" placeholder="留空自动生成" autocomplete="off" autocapitalize="characters">
+
+    <label class="label">你的昵称</label>
+    <input id="name" placeholder="输入昵称" autocomplete="off">
+
+    <div id="createOnly">
+      <label class="label">游戏模式</label>
+      <div class="mode-pick">
+        <button class="mode-btn active" data-mode="sanguosha">三国杀</button>
+        <button class="mode-btn" data-mode="poker">扑克</button>
+        <button class="mode-btn" data-mode="island">21天</button>
+      </div>
+
+    <div id="islOptions" hidden>
+      <label class="label">难度</label>
+      <div class="diff-pick">
+        <button class="diff-btn" data-diff="baby">宝宝</button>
+        <button class="diff-btn active" data-diff="easy">简单</button>
+        <button class="diff-btn" data-diff="bleak">渺茫</button>
+        <button class="diff-btn locked" data-diff="nightmare" disabled>噩梦</button>
+      </div>
+    </div>
+
+    <div id="sgOptions" class="addon-wrap">
+      <button class="addon-toggle" id="addonToggle">扩展包 <span id="addonTip">（未选）</span> <em id="addonArrow">▾</em></button>
+      <div id="addonList" hidden>
+        <label class="addon-item"><input type="checkbox" value="jiangji"><b>将计就计</b><i>♠5 ♠6 ♠7</i></label>
+        <label class="addon-item"><input type="checkbox" value="beishui"><b>背水一战</b><i>♥7 ♥10</i></label>
+        <label class="addon-item"><input type="checkbox" value="yushi"><b>玉石俱焚</b><i>♣8 ♣9</i></label>
+        <label class="addon-item"><input type="checkbox" value="jiagong"><b>假公济私</b><i>♣2 ♣3</i></label>
+        <label class="addon-item"><input type="checkbox" value="jinshang"><b>锦上添花</b><i>♥A ♦Q ♠K</i></label>
+        <label class="addon-item"><input type="checkbox" value="luojing"><b>落井下石</b><i>♥A ♠10</i></label>
+        <label class="addon-item"><input type="checkbox" value="guji"><b>故技重施</b><i>♦2 ♦3 ♦4</i></label>
+        <label class="addon-item"><input type="checkbox" value="wuxie"><b>无懈可击</b><i>♥Q ♠K</i></label>
+        <label class="addon-item addon-all"><input type="checkbox" id="addonAll"><b>全选</b><i>再追加 10 张</i></label>
+      </div>
+    </div>
+
+    <div id="pokerOptions" hidden>
+      <label class="label">牌副数</label>
+      <div class="option-row">
+        <button class="choice active" data-decks="1">1 副（54 张）</button>
+        <button class="choice" data-decks="2">2 副（104 张）</button>
+      </div>
+      <label class="label">大小王</label>
+      <div class="option-row">
+        <button class="joker-choice active" data-jokers="1">含大小王</button>
+        <button class="joker-choice" data-jokers="0">去掉大小王</button>
+      </div>
+    </div>
+
+    <label class="label">体力上限（每人）</label>
+    <input id="maxHp" type="number" min="1" max="1000" value="4">
+    </div>
+
+    <button class="primary" id="join">创建并进入</button>
+    <div class="error" id="error"></div>
+    <div class="note">房间号可自己指定；同名玩家重进会接回原座位。手机横屏体验更佳。</div>
+  </div>
+</div>
+
+<!-- ================= 牌桌 ================= -->
+<div id="game" hidden>
+  <div id="topbar">
+    <b>自由桌</b>
+    <span id="roomLabel">房间 ----</span>
+    <span id="playersLabel">0 人</span>
+    <button id="themeBtn" title="换桌布">🎨</button>
+    <button id="gear" title="设置">⚙</button>
+  </div>
+
+  <div id="gearTray" hidden>
+    <button data-action="randomSeat">🔀 换座位</button>
+    <button data-action="shuffle">🃏 洗牌</button>
+    <button data-action="collect">↩ 收牌</button>
+    <button id="customPoolBtn">🎴 自定义武将库</button>
+      <button id="splitBtn" data-action="split">➗ 一分为二</button>
+    <button id="heroBookBtn">📖 武将大全</button>
+  </div>
+
+  <div id="voteBox" hidden>
+    <div class="vote-title"><span id="voteName">投票</span><em id="voteCount">0/0</em></div>
+    <div class="vote-actions">
+      <button id="voteYes">同意</button>
+      <button id="voteNo">拒绝</button>
+    </div>
+  </div>
+
+  <div id="table">
+    <div id="world">
+      <div id="worldInner">
+        <div class="slot" id="deckSlot">
+          <div class="pile" id="deckPile"></div>
+          <span class="count" id="deckCount">0</span>
+        </div>
+        <div class="slot" id="discardSlot">
+          <span class="slot-title">弃牌区</span>
+          <div class="discard-zone" id="discardZone"></div>
+          <span class="count" id="discardCount">0 张</span>
+        </div>
+        <div id="midZone" class="midzone" hidden></div>
+        <div id="pilesLayer"></div>
+        <div id="cardsLayer"></div>
+        <div id="seatsLayer"></div>
+      </div>
+    </div>
+
+    <div id="mePanel">
+      <div class="mp-hero">
+        <div id="meHero" class="hero-card" hidden>
+          <img id="meHeroImg" alt="">
+          <span id="meHeroName"></span>
+        </div>
+      </div>
+      <div class="mp-right">
+        <div class="mp-r1">
+          <span class="me-name" id="meName"></span>
+          <div class="equip" id="meEquip"></div>
+          <div class="frontzone" id="meFront" data-idx="0"></div>
+          <div class="frontzone" id="meFront2" data-idx="1"></div>
+        </div>
+        <div class="mp-r2">
+          <button class="chain" id="meChain" title="铁索"></button>
+          <div class="pbar" id="meBar">
+            <div class="hpwrap"><div id="meHp"></div></div>
+          </div>
+          <div class="hp-btns maxctl">
+            <button id="downMax" title="生命上限 -1">▼</button><b>上限</b><button id="upMax" title="生命上限 +1">▲</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="handZone">
+    </div>
+  </div>
+
+  <div id="dragLayer"></div>
+  <div id="toast"></div>
+
+  <div id="rotateHint" hidden>
+    <div class="rot-box">
+      <b>请横屏使用</b>
+      <span>把手机横过来，牌桌会更舒展</span>
+    </div>
+  </div>
+
+  <div id="heroZoom" hidden>
+    <img id="heroZoomImg" alt="">
+  </div>
+
+  <div id="draftLayer" hidden>
+    <div class="draft-box">
+      <div class="draft-head">
+        <b id="draftTitle">选将</b>
+        <span id="draftInfo"></span>
+        <em id="draftClock">--</em>
+      </div>
+      <div class="draft-call" id="draftCall" hidden>
+        <div id="draftCallText">轮到你叫分</div>
+        <div class="draft-call-btns">
+          <button data-score="0">不叫</button>
+          <button data-score="1">1 分</button>
+          <button data-score="2">2 分</button>
+          <button data-score="3">3 分</button>
+        </div>
+      </div>
+      <div class="draft-frames" id="draftFrames" hidden></div>
+      <div class="draft-cands" id="draftCands"></div>
+      <div class="draft-foot">
+        <span id="draftPicked">未选择</span>
+        <button class="primary" id="draftConfirm" disabled>确认</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 进房间时预加载武将缩略图，带百分比 -->
+<div id="preload" hidden>
+  <div class="preload-card">
+    <div class="preload-title">正在加载武将牌</div>
+    <div class="preload-bar"><i id="preloadFill"></i></div>
+    <div class="preload-pct" id="preloadPct">0%</div>
+    <div class="preload-tip" id="preloadTip">第一次进来要下载武将图，之后浏览器会存着，再进就不用下了</div>
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="app.js?v=188"></script>
+</body>
+</html>

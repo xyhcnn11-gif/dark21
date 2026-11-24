@@ -1,0 +1,14 @@
+{
+  "name": "freecard-v6",
+  "version": "6.0.0",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "*",
+    "socket.io": "*",
+    "socket.io-client": "^4.8.4"
+  }
+}

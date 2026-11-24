@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>荒岛 21 天 · 逃离瓦格</title>
+<link rel="stylesheet" href="island.css?v=235" />
+</head>
+<body class="isl">
+<div class="night-mask"><div class="night-word">夜深了</div></div>
+<div class="out-mask"></div><div id="wxFx"></div>
+  <div id="redVig"></div>
+  <!-- 顶栏 -->
+  <header id="topbar">
+    <div class="tb-head">
+      <span id="islandName" class="isl-name">瓦格</span>
+      <span id="dayLabel" class="day-label">第 1 天 / 21 · 第 1 周</span>
+      <span id="phaseChip" class="phase-chip">搜索</span>
+      <span class="tb-room">
+        <span class="tb-r1">
+          <span id="roomChip" class="room-chip">房间 ----</span>
+        </span>
+        <span class="tb-r2">
+          <span id="volWrap" class="vol-wrap">
+            <button id="volBtn" class="vol-btn" type="button" title="音效音量">🔊</button>
+            <div id="volPop" class="vol-pop" hidden>
+              <div class="vol-track" id="volTrack"><i class="vol-fill" id="volFill"></i><b class="vol-knob" id="volKnob"></b></div>
+              <span class="vol-lab" id="volLab">70</span>
+            </div>
+          </span>
+          <span id="diffChip" class="diff-chip" hidden>简单版</span>
+        </span>
+      </span>
+    </div>
+    <div id="weatherStrip" class="w-strip"></div>
+  </header>
+
+  <!-- 今天/预报 -->
+  <div id="forecastBar" class="forecast"></div>
+
+  <div id="logPanel">
+    <div class="log-title">日志</div>
+    <div id="logList" class="log-list"></div>
+  </div>
+
+  <main id="board">
+    <!-- 六格围坐：左上/中左/右下 是玩家，左下/中右/右上 是同伴 -->
+    <section class="seat-strip" id="seat0" hidden></section>
+    <section class="seat-strip" id="seat1"></section>
+    <section class="seat-strip npc-strip" id="npc0"></section>
+    <section class="seat-strip npc-strip" id="npc2"></section>
+    <section class="seat-strip npc-strip" id="npc1"></section>
+    <section class="seat-strip" id="seat2"></section>
+
+    <!-- 中间公共区 -->
+    <section id="center">
+      <div id="midCols" class="mid-cols">
+        <div id="potZone" class="mid-side pot-side"></div>
+        <div id="monsterZone" class="monster-zone mid-main"></div>
+        <div id="furnaceZone" class="mid-side furnace-side"></div>
+      </div>
+      <div id="groundZone" class="ground-zone" hidden></div>
+      <div id="publicItems" class="public-items"></div>
+      <div id="chestBox" hidden></div>
+      <div id="feasts" hidden></div>
+    </section>
+  </main>
+
+  <!-- 自己（底部横条） -->
+  <section id="me">
+    <div class="me-top">
+      <div class="me-hero">
+        <img class="me-face" id="meFace" alt="" hidden>
+        <div class="me-id">
+          <b class="me-cname" id="meName">我</b>
+          <i class="me-ctitle" id="meCharTitle"></i>
+        </div>
+        <!-- v127：血心在上、饱食黄点在下，竖排在头像+名字右边 -->
+        <div class="me-bars" id="meBars">
+          <div class="hpbar" id="meHp"></div>
+          <div class="satbar" id="meSat"></div>
+        </div>
+        <div class="me-line" id="meLine">探索点 <b id="mePoints">3</b><i class="sep">·</i>手牌 <b id="meHandCount">0/6</b><i class="sep">·</i><span class="me-cost">饱食消耗 <b id="meCost">0</b></span></div>
+        <div class="me-tags" id="meTags"></div>
+      </div>
+      <div class="me-actions" id="meActions"></div>
+    </div>
+
+    <div class="me-zones">
+      <div class="me-col me-col-l">
+        <div class="zone items-zone" id="meItems">
+          <div class="zone-title">我的物品</div>
+          <div id="meEquip" class="equip-row"></div>
+        </div>
+      </div>
+      <div class="me-col me-col-r">
+        <div class="zone grow hand-zone">
+          <div id="meHand" class="hand-row"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tradeArea" class="trade-area" hidden></div>
+  </section>
+
+  <!-- v168：箱子块改到右列火炉下面，由 paintCenterZones 每次渲染时重建占位 -->
+
+  <div id="modal" class="modal" hidden>
+    <div class="modal-box" id="modalBox"></div>
+  </div>
+  <div id="toast" class="toast"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="island.js?v=235"></script>
+</body>
+</html>

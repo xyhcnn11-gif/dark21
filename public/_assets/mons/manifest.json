@@ -1,0 +1,442 @@
+[
+ {
+  "file": "rat_1.png",
+  "key": "rat",
+  "idx": 1,
+  "box": [
+   90,
+   530,
+   297,
+   94
+  ]
+ },
+ {
+  "file": "rat_2.png",
+  "key": "rat",
+  "idx": 2,
+  "box": [
+   426,
+   567,
+   127,
+   55
+  ]
+ },
+ {
+  "file": "rat_3.png",
+  "key": "rat",
+  "idx": 3,
+  "box": [
+   584,
+   570,
+   118,
+   47
+  ]
+ },
+ {
+  "file": "rat_4.png",
+  "key": "rat",
+  "idx": 4,
+  "box": [
+   740,
+   574,
+   122,
+   49
+  ]
+ },
+ {
+  "file": "rat_5.png",
+  "key": "rat",
+  "idx": 5,
+  "box": [
+   893,
+   531,
+   120,
+   93
+  ]
+ },
+ {
+  "file": "rat_6.png",
+  "key": "rat",
+  "idx": 6,
+  "box": [
+   1067,
+   530,
+   447,
+   94
+  ]
+ },
+ {
+  "file": "dog_1.png",
+  "key": "dog",
+  "idx": 1,
+  "box": [
+   90,
+   596,
+   295,
+   76
+  ]
+ },
+ {
+  "file": "dog_2.png",
+  "key": "dog",
+  "idx": 2,
+  "box": [
+   416,
+   596,
+   127,
+   75
+  ]
+ },
+ {
+  "file": "dog_3.png",
+  "key": "dog",
+  "idx": 3,
+  "box": [
+   566,
+   596,
+   136,
+   76
+  ]
+ },
+ {
+  "file": "dog_4.png",
+  "key": "dog",
+  "idx": 4,
+  "box": [
+   739,
+   596,
+   105,
+   78
+  ]
+ },
+ {
+  "file": "dog_5.png",
+  "key": "dog",
+  "idx": 5,
+  "box": [
+   877,
+   596,
+   136,
+   78
+  ]
+ },
+ {
+  "file": "dog_6.png",
+  "key": "dog",
+  "idx": 6,
+  "box": [
+   1057,
+   596,
+   169,
+   78
+  ]
+ },
+ {
+  "file": "dog_7.png",
+  "key": "dog",
+  "idx": 7,
+  "box": [
+   1243,
+   596,
+   272,
+   78
+  ]
+ },
+ {
+  "file": "cat_1.png",
+  "key": "cat",
+  "idx": 1,
+  "box": [
+   90,
+   646,
+   109,
+   76
+  ]
+ },
+ {
+  "file": "cat_2.png",
+  "key": "cat",
+  "idx": 2,
+  "box": [
+   266,
+   646,
+   100,
+   76
+  ]
+ },
+ {
+  "file": "cat_3.png",
+  "key": "cat",
+  "idx": 3,
+  "box": [
+   418,
+   646,
+   101,
+   77
+  ]
+ },
+ {
+  "file": "cat_4.png",
+  "key": "cat",
+  "idx": 4,
+  "box": [
+   566,
+   646,
+   96,
+   76
+  ]
+ },
+ {
+  "file": "cat_5.png",
+  "key": "cat",
+  "idx": 5,
+  "box": [
+   738,
+   646,
+   89,
+   77
+  ]
+ },
+ {
+  "file": "cat_6.png",
+  "key": "cat",
+  "idx": 6,
+  "box": [
+   877,
+   646,
+   116,
+   77
+  ]
+ },
+ {
+  "file": "cat_7.png",
+  "key": "cat",
+  "idx": 7,
+  "box": [
+   1075,
+   646,
+   309,
+   77
+  ]
+ },
+ {
+  "file": "cat_8.png",
+  "key": "cat",
+  "idx": 8,
+  "box": [
+   1443,
+   646,
+   79,
+   75
+  ]
+ },
+ {
+  "file": "snake_1.png",
+  "key": "snake",
+  "idx": 1,
+  "box": [
+   90,
+   695,
+   94,
+   75
+  ]
+ },
+ {
+  "file": "snake_2.png",
+  "key": "snake",
+  "idx": 2,
+  "box": [
+   265,
+   695,
+   84,
+   79
+  ]
+ },
+ {
+  "file": "snake_3.png",
+  "key": "snake",
+  "idx": 3,
+  "box": [
+   419,
+   695,
+   88,
+   72
+  ]
+ },
+ {
+  "file": "snake_4.png",
+  "key": "snake",
+  "idx": 4,
+  "box": [
+   570,
+   695,
+   99,
+   79
+  ]
+ },
+ {
+  "file": "snake_5.png",
+  "key": "snake",
+  "idx": 5,
+  "box": [
+   738,
+   695,
+   85,
+   71
+  ]
+ },
+ {
+  "file": "snake_6.png",
+  "key": "snake",
+  "idx": 6,
+  "box": [
+   880,
+   695,
+   107,
+   68
+  ]
+ },
+ {
+  "file": "snake_7.png",
+  "key": "snake",
+  "idx": 7,
+  "box": [
+   1077,
+   695,
+   117,
+   79
+  ]
+ },
+ {
+  "file": "snake_8.png",
+  "key": "snake",
+  "idx": 8,
+  "box": [
+   1208,
+   695,
+   148,
+   79
+  ]
+ },
+ {
+  "file": "snake_9.png",
+  "key": "snake",
+  "idx": 9,
+  "box": [
+   1419,
+   695,
+   103,
+   79
+  ]
+ },
+ {
+  "file": "bear_1.png",
+  "key": "bear",
+  "idx": 1,
+  "box": [
+   90,
+   746,
+   92,
+   100
+  ]
+ },
+ {
+  "file": "bear_2.png",
+  "key": "bear",
+  "idx": 2,
+  "box": [
+   221,
+   746,
+   128,
+   100
+  ]
+ },
+ {
+  "file": "bear_3.png",
+  "key": "bear",
+  "idx": 3,
+  "box": [
+   382,
+   746,
+   123,
+   100
+  ]
+ },
+ {
+  "file": "bear_4.png",
+  "key": "bear",
+  "idx": 4,
+  "box": [
+   537,
+   746,
+   180,
+   101
+  ]
+ },
+ {
+  "file": "bear_5.png",
+  "key": "bear",
+  "idx": 5,
+  "box": [
+   733,
+   746,
+   134,
+   101
+  ]
+ },
+ {
+  "file": "bear_6.png",
+  "key": "bear",
+  "idx": 6,
+  "box": [
+   883,
+   746,
+   157,
+   101
+  ]
+ },
+ {
+  "file": "bear_7.png",
+  "key": "bear",
+  "idx": 7,
+  "box": [
+   1057,
+   746,
+   34,
+   101
+  ]
+ },
+ {
+  "file": "bear_8.png",
+  "key": "bear",
+  "idx": 8,
+  "box": [
+   1105,
+   746,
+   247,
+   101
+  ]
+ },
+ {
+  "file": "bear_9.png",
+  "key": "bear",
+  "idx": 9,
+  "box": [
+   1374,
+   746,
+   96,
+   101
+  ]
+ },
+ {
+  "file": "bear_10.png",
+  "key": "bear",
+  "idx": 10,
+  "box": [
+   1490,
+   746,
+   31,
+   100
+  ]
+ }
+]
